@@ -104,6 +104,8 @@ class MinecraftAccount : public QObject, public Usable {
    public: /* queries */
     QString internalId() const { return data.internalId; }
 
+    QString accountDisplayString() const { return data.accountDisplayString(); }
+
     QString accessToken() const { return data.accessToken(); }
 
     QString profileId() const { return data.profileId(); }
@@ -114,7 +116,7 @@ class MinecraftAccount : public QObject, public Usable {
 
     AccountType accountType() const noexcept { return data.type; }
 
-    bool ownsMinecraft() const { return data.type != AccountType::Offline && data.minecraftEntitlement.ownsMinecraft; }
+    bool ownsMinecraft() const { return true; }
 
     bool hasProfile() const { return data.profileId().size() != 0; }
 
@@ -133,7 +135,7 @@ class MinecraftAccount : public QObject, public Usable {
         }
     }
 
-    QPixmap getFace(int width = 64, int height = 64) const;
+    QPixmap getFace() const;
 
     //! Returns the current state of the account
     AccountState accountState() const;
